@@ -15,74 +15,93 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-gradient-to-r from-amber-900 via-yellow-600 to-orange-500 text-white">
-      <header className="fixed inset-x-0 top-0 z-50 shadow-md backdrop-blur-md">
+    <div className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-500 text-white">
+      {/* Header Section */}
+      <header className="fixed inset-x-0 top-0 z-50 shadow-lg backdrop-blur-md">
         <nav className="flex items-center justify-between p-4 lg:px-12">
+          {/* Logo */}
           <motion.div
             className="flex items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <a href="#" className="text-2xl font-bold tracking-wider">
+            <a
+              href="#"
+              className="text-2xl font-bold tracking-wider text-amber-300 hover:text-yellow-300 transition-transform transform hover:scale-110"
+            >
               Ravikumar Sura
             </a>
           </motion.div>
+
+          {/* Navigation Links (Desktop) */}
           <div className="hidden lg:flex lg:gap-10">
             {navigation.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-lg font-medium hover:text-yellow-300 transition-transform transform hover:scale-105"
-                whileHover={{ scale: 1.1, color: "#FFD700" }}
+                className="text-lg font-medium text-amber-300 hover:text-yellow-300 transition-transform transform hover:scale-105"
+                whileHover={{ scale: 1.1 }}
               >
                 {item.name}
               </motion.a>
             ))}
           </div>
+
+          {/* Hamburger Menu (Mobile) */}
           <div className="lg:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               className="inline-flex items-center justify-center p-2 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
-              <span className="sr-only">Open menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
         </nav>
 
-        {/* Mobile Menu */}
-        <Dialog open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
+        {/* Mobile Navigation Menu */}
+        <Dialog
+          open={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+          className="relative z-50"
+        >
+          {/* Overlay */}
           <motion.div
-            className="fixed inset-0 z-50 bg-black bg-opacity-50"
+            className="fixed inset-0 bg-black bg-opacity-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-gradient-to-r from-gray-900 to-gray-800 text-white p-6 sm:ring-1 sm:ring-gray-700">
+          <DialogPanel className="fixed inset-y-0 right-0 w-full max-w-sm bg-gradient-to-r from-gray-900 to-gray-800 text-white p-6 shadow-xl">
+            {/* Header */}
             <motion.div
               className="flex items-center justify-between mb-6"
               initial={{ x: 200 }}
               animate={{ x: 0 }}
               transition={{ type: "spring", stiffness: 100 }}
             >
-              <a href="#" className="text-xl font-bold">
-                MyPortfolio
+              <a
+                href="#"
+                className="text-xl font-bold tracking-wider text-yellow-300"
+              >
+                Portfolio
               </a>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-md p-2 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
               >
-                <span className="sr-only">Close menu</span>
                 <XMarkIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </motion.div>
+
+            {/* Navigation Links */}
             <motion.div
-              className="space-y-4"
+              className="space-y-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ delay: 0.3 }}
             >
               {navigation.map((item) => (
                 <a
@@ -107,8 +126,9 @@ export default function Navbar() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Animated Background Blur */}
         <motion.div
-          className="absolute -z-10 inset-0 bg-gradient-to-r from-indigo-500 via-transparent to-purple-500 opacity-60 blur-2xl"
+          className="absolute -z-10 inset-0 bg-gradient-to-r from-indigo-500 via-transparent to-purple-500 opacity-60 blur-3xl"
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5 }}
@@ -128,8 +148,8 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Explore my projects, skills, and more. Let’s build something
-            amazing together!
+            Discover my journey, skills, and projects. Let’s build something
+            exceptional together!
           </motion.p>
           <motion.div
             className="mt-10 flex justify-center gap-x-6"
